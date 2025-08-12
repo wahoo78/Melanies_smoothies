@@ -42,7 +42,7 @@ if ingredients_list:
     
     time_to_insert = st.button('Submit Order')
     
-    if time_to_insert:
+if time_to_insert:
         # session.sql("USE WAREHOUSE COMPUTE_WS").collect()
         st.success(my_insert_stmt)
         # session.sql(my_insert_stmt).collect()
