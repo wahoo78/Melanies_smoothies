@@ -14,8 +14,6 @@ name_on_order = st.text_input('Name on smoothie:', '')
 cnx = st.connection("snowflake")
 session = cnx.session()
 
-session.sql("USE WAREHOUSE COMPUTE_WS").collect()
-
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 
 # st.dataframe(data=my_dataframe, use_container_width=True)
@@ -45,5 +43,6 @@ if ingredients_list:
     time_to_insert = st.button('Submit Order')
     
     if time_to_insert:
+        session.sql("USE WAREHOUSE COMPUTE_WS").collect()
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered, '+name_on_order+'!', icon="✅")
